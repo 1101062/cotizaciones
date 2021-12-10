@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+
+	<div class="container py-4">
+
+		<div class="card bg-dark text-white">
+			<div class="card-header" th:text="${titulo}"></div>
+			<div class="card-body">
+
+				<div th:object="${gestor}" th:remove="tag">
+					<ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+						<li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>
+					</ul>
+				</div>
+
+				<form th:action="@{/form/gestor}" th:object="${gestor}" method="post" enctype="multipart/form-data">
+
+					<!-- Nombres -->
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Nombres</label>
+						<div class="col-sm-6">
+							<input type="text" th:field="*{nombres}" class="form-control"
+								th:errorclass="'form-control alert-danger'" /> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('nombres')}" th:errors="*{nombres}"></small>
+						</div>
+					</div>
+
+					<!-- Apellidos -->
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Apellidos</label>
+						<div class="col-sm-6">
+							<input type="text" th:field="*{apellidos}" class="form-control"
+								th:errorclass="'form-control alert-danger'" /> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}"></small>
+						</div>
+					</div>
+
+					<!-- DNI -->
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">DNI</label>
+						<div class="col-sm-6">
+							<input type="text" th:field="*{dni}" class="form-control"
+								   th:errorclass="'form-control alert-danger'" /> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}"></small>
+						</div>
+					</div>
+
+					<!-- Correo -->
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Correo</label>
+						<div class="col-sm-6">
+							<input type="text" th:field="*{email}" class="form-control"
+								th:errorclass="'form-control alert-danger'" /> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></small>
+						</div>
+					</div>
+
+					<!-- Telefono -->
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Telefono</label>
+						<div class="col-sm-6">
+							<input type="text" th:field="*{telefono}" class="form-control"
+								   th:errorclass="'form-control alert-danger'" /> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></small>
+						</div>
+					</div>
+
+					<!-- Distrito -->
+					<div class="form-group row">
+						<label class="col-sm-2 col-form-label">Distrito</label>
+						<div class="col-sm-6">
+							<input type="text" th:field="*{distrito}" class="form-control"
+								   th:errorclass="'form-control alert-danger'" /> <small
+								class="form-text text-danger"
+								th:if="${#fields.hasErrors('distrito')}" th:errors="*{distrito}"></small>
+						</div>
+					</div>
+
+					<div class="form-group row">
+						<div class="col-sm-6">
+<!--							<input type="submit" value="Guardar Gestor" class="btn btn-primary" />-->
+							<button type="submit" value="Guardar Gestor" class="btn btn-primary">
+								<i class="far fa-save"></i>
+								Guardar Gestor
+							</button>
+						</div>
+					</div>
+
+				</form>
+			</div>
+		</div>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+<header th:replace="layout/layout :: header"></header>
+
+<div class="container py-4">
+    <form th:action="@{/form/registro}" th:object="${user}" method="post" enctype="multipart/form-data">
+        <!--    GESTOR-->
+
+
+        <!--            <div th:object="${gestor}" th:remove="tag">-->
+        <!--                <ul th:if="${#fields.hasErrors('*')}" class="alert alert-danger">-->
+        <!--                    <li th:each="err: ${#fields.errors('*')}" th:text="${err}"></li>-->
+        <!--                </ul>-->
+        <!--            </div>-->
+
+
+        <!--                <div class="form-group row">-->
+        <!--                    <div class="col-sm-6">-->
+        <!--                        &lt;!&ndash;							<input type="submit" value="Guardar Gestor" class="btn btn-primary" />&ndash;&gt;-->
+        <!--                        <button type="submit" value="Guardar Gestor" class="btn btn-primary">-->
+        <!--                            <i class="far fa-save"></i>-->
+        <!--                            Guardar Gestor-->
+        <!--                        </button>-->
+        <!--                    </div>-->
+        <!--                </div>-->
+
+        <div class="row">
+            <!--    USER-->
+            <div class="card bg-dark text-white col-lg-6">
+                <div class="card-header" th:text="${tituloGestor}"></div>
+                <div class="card-body">
+
+
+                    <!-- Nombres -->
+                    <div class="form-group row">
+                        <!--                    <label class="col-sm-2 col-form-label">Nombres</label>-->
+                        <div class="col-lg-9">
+                            <input type="text" th:field="*{cliente.nombres}" class="form-control" placeholder="NOMBRES"
+                                   th:errorclass="'form-control alert-danger'"/> <small
+                                class="form-text text-danger"
+                                th:if="${#fields.hasErrors('cliente.nombres')}" th:errors="*{cliente.nombres}"></small>
+                        </div>
+                    </div>
+
+                    <!-- Apellidos -->
+                    <div class="form-group row">
+                        <!--                    <label class="col-sm-2 col-form-label">Apellidos</label>-->
+                        <div class="col-lg-9">
+                            <input type="text" th:field="*{cliente.apellidos}" class="form-control"
+                                   placeholder="APELLIDOS"
+                                   th:errorclass="'form-control alert-danger'"/> <small
+                                class="form-text text-danger"
+                                th:if="${#fields.hasErrors('cliente.apellidos')}"
+                                th:errors="*{cliente.apellidos}"></small>
+                        </div>
+                    </div>
+
+                    <!-- DNI -->
+                    <div class="form-group row">
+                        <!--                    <label class="col-sm-2 col-form-label">DNI</label>-->
+                        <div class="col-lg-9">
+                            <input type="text" th:field="*{cliente.dni}" class="form-control" placeholder="DNI"
+                                   th:errorclass="'form-control alert-danger'"/> <small
+                                class="form-text text-danger"
+                                th:if="${#fields.hasErrors('cliente.dni')}" th:errors="*{cliente.dni}"></small>
+                        </div>
+                    </div>
+
+                    <!-- Correo -->
+                    <div class="form-group row">
+                        <!--                    <label class="col-sm-2 col-form-label">Correo</label>-->
+                        <div class="col-lg-9">
+                            <input type="text" th:field="*{cliente.email}" class="form-control" placeholder="EMAIL"
+                                   th:errorclass="'form-control alert-danger'"/> <small
+                                class="form-text text-danger"
+                                th:if="${#fields.hasErrors('cliente.email')}" th:errors="*{cliente.email}"></small>
+                        </div>
+                    </div>
+
+                    <!-- Telefono -->
+                    <div class="form-group row">
+                        <!--                    <label class="col-sm-2 col-form-label">Telefono</label>-->
+                        <div class="col-lg-9">
+                            <input type="text" th:field="*{cliente.telefono}" class="form-control"
+                                   placeholder="TELÉFONO"
+                                   th:errorclass="'form-control alert-danger'"/> <small
+                                class="form-text text-danger"
+                                th:if="${#fields.hasErrors('cliente.telefono')}"
+                                th:errors="*{cliente.telefono}"></small>
+                        </div>
+                    </div>
+
+                    <!-- Distrito -->
+                    <div class="form-group row">
+                        <!--                    <label class="col-sm-2 col-form-label">Distrito</label>-->
+                        <div class="col-lg-9">
+                            <input type="text" th:field="*{cliente.distrito}" class="form-control"
+                                   placeholder="DISTRITO"
+                                   th:errorclass="'form-control alert-danger'"/> <small
+                                class="form-text text-danger"
+                                th:if="${#fields.hasErrors('cliente.distrito')}"
+                                th:errors="*{cliente.distrito}"></small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+<!--            ESPACIO EN BLANCO-->
+            <div class="col-lg-1">
+
+            </div>
+
+            <br>
+            <br>
+            <div class="card bg-dark text-white col-lg-5">
+                <div class="card-header" th:text="${tituloUsuario}"></div>
+                <div class="card-body">
+
+                    <!-- USERNAME -->
+                    <div class="form-group row">
+                        <!--                    <label class="col-sm-4 col-form-label">USERNAME</label>-->
+                        <div class="col-lg-9">
+                            <input type="text" th:field="*{username}" class="form-control" placeholder="USERNAME"
+                                   th:errorclass="'form-control alert-danger'"/>
+                            <!--                        <small class="form-text text-danger"-->
+                            <!--                               th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></small>-->
+                        </div>
+                    </div>
+
+                    <!-- PASSWORD -->
+                    <div class="form-group row">
+                        <div class="col-lg-9">
+                            <div class="input-group">
+                                <input id="userPasword_ID" type="password" th:field="*{password}" class="form-control"
+                                       placeholder="PASSWORD"
+                                       th:errorclass="'form-control alert-danger'"/>
+                                <div class="input-group-append">
+                                    <button class="btn btn-primary" type="button" onclick="mostrarContrasena()">Ver
+                                    </button>
+                                </div>
+                                <!--                            <small class="form-text text-danger"-->
+                                <!--                                   th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></small>-->
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                    <!--
+                    <input type="hidden" th:field="*{id}"/>
+                    -->
+
+
+                </div>
+            </div>
+        </div>
+
+        <br>
+        <!-- BOTON AGREGAR USUARIO-->
+        <div class="form-group">
+            <div class="col-sm-6">
+                <!--                        <input type="submit" value="Guardar Usuario" class="btn btn-primary"/>-->
+
+                <button type="submit" value="Guardar Usuario" class="btn btn-primary">
+                    <i class="far fa-save"></i>
+                    Guardar Usuario
+                </button>
+            </div>
+        </div>
+    </form>
+</div>
+
+<script type="text/javascript">
+    function generarPassword() {
+
+        var numeroAleatorero = 0;
+        numeroAleatorero = getRandomInt(1000, 9999);
+        console.log("Password: " + numeroAleatorero)
+        $("#userPasword_ID").val(numeroAleatorero);
+
+    }
+
+    function getRandomInt(min, max) {
+        return Math.floor(Math.random() * (max - min)) + min;
+    }
+
+    function mostrarContrasena() {
+        var tipo = document.getElementById("userPasword_ID");
+        if (tipo.type == "password") {
+            tipo.type = "text";
+        } else {
+            tipo.type = "password";
+        }
+    }
+</script>
+
+<footer th:replace="layout/layout :: footer"></footer>
+
+</body>
+</html>

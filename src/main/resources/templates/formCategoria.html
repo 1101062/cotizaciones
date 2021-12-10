@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+<header th:replace="layout/layout :: header"></header>
+
+<div class="container py-4">
+    <div class="card bg-dark text-white">
+        <div class="card-header" th:text="${titulo}"></div>
+        <div class="card-body">
+            <form th:action="@{/form/categoria}" th:object="${categoria}" method="post" enctype="multipart/form-data">
+
+
+                <!-- NOMBRE -->
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">NOMBRE</label>
+                    <div class="col-sm-6">
+                        <input type="text" th:field="*{nombre}" class="form-control"
+                               th:errorclass="'form-control alert-danger'"/>
+                        <small class="form-text text-danger"
+                               th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
+                    </div>
+                </div>
+
+                <!-- BOTON AGREGAR -->
+                <div class="form-group">
+                    <div class="col-sm-6">
+<!--                        <input type="submit" value="Guardar Categoría" class="btn btn-primary"/>-->
+
+                        <button type="submit" value="Guardar Categoría" class="btn btn-primary">
+                            <i class="far fa-save"></i>
+                            Guardar Categoría
+                        </button>
+                    </div>
+                </div>
+
+                <!--
+                <input type="hidden" th:field="*{id}"/>
+                -->
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<footer th:replace="layout/layout :: footer"></footer>
+
+</body>
+</html>

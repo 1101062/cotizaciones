@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+
+    <header th:replace="layout/layout :: header"></header>
+
+    <div class="container py-4 login">
+
+        <div class="d-flex justify-content-center h-100">
+            <div class="card border-info text-center">
+                <div class="card-header bg-info">
+                    <h3 class="text-white" >Sign In</h3>
+<!--                    <div class="d-flex justify-content-end social_icon">-->
+<!--                        <span><i class="fab fa-facebook-square"></i></span>-->
+<!--                        <span><i class="fab fa-google-plus-square"></i></span>-->
+<!--                        <span><i class="fab fa-twitter-square"></i></span>-->
+<!--                    </div>-->
+                </div>
+                <div class="card-body">
+                    <form th:action="@{/login}" method="post">
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-user"></i></span>
+                            </div>
+                            <input type="text" name="username"  class="form-control" placeholder="username">
+
+                        </div>
+                        <div class="input-group form-group">
+                            <div class="input-group-prepend">
+                                <span class="input-group-text"><i class="fas fa-key"></i></span>
+                            </div>
+                            <input type="password" name="password" class="form-control" placeholder="password">
+                        </div>
+<!--                        <div class="row align-items-center remember">-->
+<!--                            <input type="checkbox">Recordarme-->
+<!--                        </div>-->
+                        <div class="form-group d-flex justify-content-center">
+<!--                            <input type="submit" value="Login" class="btn float-right btn-primary ">-->
+                            <button type="submit" value="Login" class="btn float-right btn-info ">
+                                <i class="fas fa-sign-in-alt"></i>
+                                Login
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="card-footer">
+                    <div class="d-flex justify-content-lg-start links">
+                        <p class="font-weight-bold" >No Tienes cuenta?</p>
+                       <a class="font-weight-bold" th:href="@{/form/registro}">
+                           <i class="fas fa-arrow-right"></i>
+                           Regístrate
+                       </a>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

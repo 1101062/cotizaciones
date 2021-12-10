@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="layout/layout :: head"></head>
+
+<body>
+<header th:replace="layout/layout :: header"></header>
+
+<div class="container py-4">
+    <div class="card bg-dark text-white">
+        <div class="card-header" th:text="${titulo}"></div>
+        <div class="card-body">
+            <form th:action="@{/form/producto}" th:object="${producto}" method="post" enctype="multipart/form-data">
+
+
+                <!-- CATEGORÍA -->
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">CATEGORÍA</label>
+                    <div class="col-sm-6">
+                        <select class="custom-select form-control form-control-sm col-md-6" th:field="*{categoria}">
+                            <option th:each="categoria : ${categorias}"
+                                    th:value="${categoria.id}"
+                                    th:text="${categoria.nombre}"
+                            />
+                        </select>
+                    </div>
+                </div>
+
+                <!-- NOMBRE -->
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">NOMBRE</label>
+                    <div class="col-sm-6">
+                        <input type="text" th:field="*{nombre}" class="form-control"
+                               th:errorclass="'form-control alert-danger'"/>
+                        <small class="form-text text-danger"
+                               th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></small>
+                    </div>
+                </div>
+
+                <!-- MARCA -->
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">MARCA</label>
+                    <div class="col-sm-6">
+                        <input type="text" th:field="*{marca}" class="form-control"
+                               th:errorclass="'form-control alert-danger'"/>
+                        <small class="form-text text-danger"
+                               th:if="${#fields.hasErrors('marca')}" th:errors="*{marca}"></small>
+                    </div>
+                </div>
+
+                <!-- MODELO -->
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">MODELO</label>
+                    <div class="col-sm-6">
+                        <input type="text" th:field="*{modelo}" class="form-control"
+                               th:errorclass="'form-control alert-danger'"/>
+                        <small class="form-text text-danger"
+                               th:if="${#fields.hasErrors('modelo')}" th:errors="*{modelo}"></small>
+                    </div>
+                </div>
+
+                <!-- SERIE -->
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">SERIE</label>
+                    <div class="col-sm-6">
+                        <input type="text" th:field="*{serie}" class="form-control"
+                               th:errorclass="'form-control alert-danger'"/>
+                        <small class="form-text text-danger"
+                               th:if="${#fields.hasErrors('serie')}" th:errors="*{serie}"></small>
+                    </div>
+                </div>
+
+                <!-- FABRICANTE -->
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">FABRICANTE</label>
+                    <div class="col-sm-6">
+                        <input type="text" th:field="*{fabricante}" class="form-control"
+                               th:errorclass="'form-control alert-danger'"/>
+                        <small class="form-text text-danger"
+                               th:if="${#fields.hasErrors('fabricante')}" th:errors="*{fabricante}"></small>
+                    </div>
+                </div>
+
+                <!-- STOCK -->
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">STOCK</label>
+                    <div class="col-sm-6">
+                        <input type="number" th:field="*{stock}" class="form-control"
+                               th:errorclass="'form-control alert-danger'" value="1" min="1" max="10000"/>
+                        <small class="form-text text-danger"
+                               th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}"></small>
+                    </div>
+                </div>
+
+                <!-- PRECIO UNITARIO -->
+                <div class="form-group row">
+                    <label class="col-sm-2 col-form-label">PRECIO UNITARIO</label>
+                    <div class="col-sm-6">
+                        <input type="number" step=any th:field="*{precio}" class="form-control"
+                               th:errorclass="'form-control alert-danger'"  value="1" min="1"/>
+                        <small class="form-text text-danger"
+                               th:if="${#fields.hasErrors('precio')}" th:errors="*{precio}"></small>
+                    </div>
+                </div>
+
+                <!-- BOTON AGREGAR -->
+                <div class="form-group">
+                    <div class="col-sm-6">
+
+<!--                        <input type="submit" value="Guardar Producto" class="btn btn-primary"/>-->
+
+                        <button type="submit" value="Guardar Producto" class="btn btn-primary">
+                            <i class="far fa-save"></i>
+                            Guardar Producto
+                        </button>
+                    </div>
+                </div>
+
+                <!--
+                <input type="hidden" th:field="*{id}"/>
+                -->
+
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<footer th:replace="layout/layout :: footer"></footer>
+
+</body>
+</html>

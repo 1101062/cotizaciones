@@ -1,0 +1,26 @@
+package com.bolsadeideas.springboot.app.view.json;
+
+import com.bolsadeideas.springboot.app.models.entity.Gestor;
+import org.springframework.data.domain.Page;
+import org.springframework.stereotype.Component;
+import org.springframework.web.servlet.view.json.MappingJackson2JsonView;
+
+import java.util.Map;
+
+@Component("listar.json")
+public class ClienteListJsonView extends MappingJackson2JsonView {
+
+    @Override
+    protected Object filterModel(Map<String, Object> model) {
+
+        model.remove("titulo");
+        model.remove("page");
+
+        @SuppressWarnings("unchecked")
+		Page<Gestor> clientes = (Page<Gestor>) model.get("clientes");
+        model.remove("clientes");
+        model.put("clientes", clientes.getContent());
+
+        return super.filterModel(model);
+    }
+}

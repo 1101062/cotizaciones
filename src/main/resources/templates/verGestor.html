@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+<header th:replace="layout/layout :: header"></header>
+
+<div class="container py-4">
+
+    <div class="card bg-light">
+        <div class="card-header font-weight-bold" th:text="${titulo}"></div>
+        <div class="card-body">
+
+            <h4 class="card-title">
+                <a sec:authorize="hasRole('ROLE_USER')" class="btn btn-warning font-weight-bold"
+                   th:href="@{'/cotizacion/form/' + ${gestor.id}}"
+                   th:text="'Cotizar'"></a>
+            </h4>
+            <!--
+            <img th:if="${#strings.length(gestor.foto) > 0}"
+                 class="img-thumbnail rounded float-left" style="max-width: 25%;"
+                 th:src="@{'/uploads/' + ${gestor.foto}}" th:alt="${gestor.foto}"/>
+            -->
+            <ul class="list-group">
+                <li class="list-group-item active" th:text="${gestor.nombres} + ' '+ ${gestor.apellidos}"></li>
+                <li class="list-group-item" th:text="'DNI: ' + ${gestor.dni}"></li>
+                <li class="list-group-item" th:text="'CORREO: ' + ${gestor.email}"></li>
+                <li class="list-group-item" th:text="'TELÉFONO: ' + ${gestor.telefono}"></li>
+                <li class="list-group-item" th:text="'DISTRITO: ' + ${gestor.distrito}"></li>
+            </ul>
+
+            <div th:if="${#lists.isEmpty(gestor.cotizaciones)}"
+                 class="alert alert-info my-4"
+                 th:text="'No hay cotizaciones asignadas para ' + ${gestor.nombres} + ' ' + ${gestor.apellidos}"></div>
+
+            <table th:if="${not #lists.isEmpty(gestor.cotizaciones)}"
+                   class="table table-bordered table-striped my-4 ">
+                <thead class="bg-info text-white">
+                <tr>
+                    <th>ID</th>
+                    <th>OBSERVACIÓN</th>
+                    <th>FECHA</th>
+                    <th>TOTAL</th>
+                    <th sec:authorize="hasRole('ROLE_USER')">VER</th>
+                    <th sec:authorize="hasRole('ROLE_ADMIN')">ELIMINAR</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="cotizacion: ${gestor.cotizaciones}">
+                    <td th:text="${cotizacion.id}"></td>
+                    <td th:text="${cotizacion.observacion}"></td>
+                    <td th:text="${cotizacion.createAt}"></td>
+                    <td th:text="${cotizacion.total}"></td>
+                    <td sec:authorize="hasRole('ROLE_USER')">
+                        <a class="btn btn-outline-success btn-xs" th:href="@{'/cotizacion/ver/' + ${cotizacion.id}}"
+                           th:text="'Detalle'"></a>
+                    </td>
+                    <td sec:authorize="hasRole('ROLE_ADMIN')">
+                        <a class="btn btn-outline-danger btn-xs" th:href="@{'/cotizacion/eliminar/' + ${cotizacion.id}}"
+                           th:text="'Eliminar'" onclick="return confirm('¿Estás seguro que desea eliminar la cotizacion?')"></a>
+                    </td>
+                </tr>
+                </tbody>
+
+            </table>
+
+        </div>
+    </div>
+
+</div>
+
+<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

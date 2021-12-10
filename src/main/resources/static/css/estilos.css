@@ -1,0 +1,99 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 1 jun. 2021, 2:38:49
+    Author     : David, Luis, Jorge, Frank, Christian,
+*/
+
+/* Login */
+.login{
+
+  background-image: url("https://mdn.mozillademos.org/files/6457/mdn_logo_only_color.png");
+}
+
+form{
+  max-width: 460px;
+  width: calc(100% - 40px);
+  padding: 20px;
+  /*background: #fff;*/
+  background:linear-gradient(rgb(0, 0, 0, .50) 0%, rgb(0, 0, 0, .50) 100%), url(../images/spring_1.png);
+  border-radius: 10px;
+  margin: auto;
+
+}
+
+#content{
+  position: absolute;
+  min-height: 50%;
+  width: 80%;
+  top: 20%;
+  left: 5%;
+}
+
+.cabecera-matriz{
+  background-color: #c82333;
+  text-align: center;
+  font-family: sans-serif;
+  color: white;
+}
+
+
+.selected{
+  cursor: pointer;
+}
+
+.selected:hover{
+  background-color: #fd7e14;
+  color: white;
+  text-align: center;
+}
+
+.seleccionada{
+  background-color: #fd7e14;
+  color: white;
+  text-align: center;
+}
+
+.selected1{
+  cursor: pointer;
+}
+
+.selected1:hover{
+  background-color: #19692c;
+  color: white;
+  text-align: center;
+}
+
+.seleccionada1{
+  background-color: #19692c;
+  color: white;
+  text-align: center;
+}
+
+.item-curso{
+  text-align: center;
+}
+
+/* Agregamos margen para los botones en SweetAlert */
+.btn-danger{
+  margin: 5px 5px 5px 5px;
+}
+
+/* Agregamos margen para los botones en SweetAlert */
+.btn-success{
+  margin: 5px 5px 5px 5px;
+}
+
+/* Muestra el recuadro rojo a la hora de validar */
+.input-incorrecto{
+  border: 2px solid #a71d2a;
+}
+/* Muestra el recuadro rojo a la hora de validar */
+.input-correcto{
+  border: 2px solid #3fc3ee;
+}
+
+
